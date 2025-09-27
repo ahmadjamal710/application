@@ -1,0 +1,6 @@
+controller:
+  serviceAccount:
+    create: true
+    name: "ebs-csi-controller-sa"
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::739275482337:role/eks-ebs-csi-role

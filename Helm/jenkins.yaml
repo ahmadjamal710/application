@@ -1,0 +1,15 @@
+controller:
+  admin:
+    username: "admin"
+    password: "admin"
+  serviceType: "ClusterIP"
+  servicePort: 8080
+  nodeSelector:
+    topology.kubernetes.io/zone: "us-east-1a"
+  jenkinsUriPrefix: "/jenkins"
+  additionalPlugins:
+    - github:1.43.0
+    - github-api:1.321-488.v9b_c0da_9533f8
+persistence:
+  existingClaim: "jenkins-pvc"
+  storageClass: "-"
