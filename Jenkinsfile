@@ -13,6 +13,7 @@ metadata:
   name: kaniko
   namespace: jenkins
 spec:
+  serviceAccountName: jenkins
   containers:
     - name: kaniko
       imagePullPolicy: IfNotPresent
