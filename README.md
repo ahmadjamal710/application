@@ -1,4 +1,4 @@
- Devops To-Do List Application with Kubernetes Deployment
+# Devops To-Do List Application with Kubernetes Deployment
 
 A production-grade, Devops To-Do List application with automated Kubernetes deployment using Jenkins CI/CD pipeline.
 
@@ -22,7 +22,103 @@ The application is structured into three main components:
 ## Tech Stack
 
 - **Frontend**: HTML5, CSS3, JavaScript
-- **Backend**: Python, Django, Django REST Framework
+-   ├── frontend/          # Frontend static web application
+│   │   ├── Dockerfile
+│   │   ├── index.html
+│   │   ├── style.css
+│   │   └── script.js
+│   └── backend/          # Django backend application
+│       ├── Dockerfile
+│       ├── apps/
+│       └── todo_backend/
+├── Manifests/           # Kubernetes manifests
+│   ├── deployments.yaml
+│   ├── services.yaml
+│   └── volumes.yaml
+├── Scripts/            # Utility scripts
+│   ├── system-up.sh
+│   └── docker-commands.sh
+├── Helm/              # Helm charts configuration
+│   ├── csi-driver.yaml
+│   ├── ingress.yaml
+│   ├── jenkins.yaml
+│   └── monitoring.yaml
+├── Terraform/         # Infrastructure as Code
+├── Jenkinsfile       # CI/CD pipeline definition
+└── README.md
+```
+
+## Setup & Deployment
+
+### Prerequisites
+
+- Kubernetes cluster
+- Jenkins with Kubernetes plugin
+- Docker Hub account
+- Helm 3
+- kubectl CLI
+- Terraform
+
+### Initial Setup
+
+1. Create necessary namespaces:
+
+   ```bash
+   kubectl apply -f Manifests/namespaces.yaml
+   ```
+
+2. Set up storage and dependencies:
+
+   ```bash
+   helm install aws-ebs-csi-driver aws-ebs-csi-driver/aws-ebs-csi-driver
+   ```
+
+3. Deploy ingress controller:
+
+   ```bash
+   helm install ingress ingress-nginx/ingress-nginx
+   ```
+
+4. Set up monitoring:
+
+   ```bash
+   helm install monitoring prometheus-community/kube-prometheus-stack
+   ```
+
+### Deployment
+
+Use the provided system-up script to deploy the entire stack:
+
+```bash
+./Scripts/system-up.sh
+```
+
+## CI/CD Pipeline
+
+The Jenkins pipeline:
+
+1. Builds frontend and backend images using Kaniko
+2. Pushes images to Docker Hub
+3. Updates Kubernetes deployments with new image versions
+4. Applies changes to the cluster
+
+## Application Features
+
+- User authentication (register/login)
+- Create, read, update, delete todos
+- Mark todos as complete/incomplete
+- Persistent data storage
+- Health check endpoints
+- Responsive UI design
+
+## Security Features
+
+- CSRF protection
+- Session-based authentication
+- Secure password storage
+- Database credentials management
+- Container security with Kaniko
+**Backend**: Python, Django, Django REST Framework
 - **Database**: MySQL
 - **CI/CD**: Jenkins with Kaniko for secure builds
 - **Container Registry**: Docker Hub
@@ -51,3 +147,84 @@ The application is structured into three main components:
 ├── Scripts/            # Utility scripts
 │   ├── system-up.sh
 │   └── docker-commands.sh
+├── Helm/              # Helm charts configuration
+│   ├── csi-driver.yaml
+│   ├── ingress.yaml
+│   ├── jenkins.yaml
+│   └── monitoring.yaml
+├── Terraform/         # Infrastructure as Code
+├── Jenkinsfile       # CI/CD pipeline definition
+└── README.md
+```
+
+## Setup & Deployment
+
+### Prerequisites
+
+- Kubernetes cluster
+- Jenkins with Kubernetes plugin
+- Docker Hub account
+- Helm 3
+- kubectl CLI
+- Terraform
+
+### Initial Setup
+
+1. Create necessary namespaces:
+
+   ```bash
+   kubectl apply -f Manifests/namespaces.yaml
+   ```
+
+2. Set up storage and dependencies:
+
+   ```bash
+   helm install aws-ebs-csi-driver aws-ebs-csi-driver/aws-ebs-csi-driver
+   ```
+
+3. Deploy ingress controller:
+
+   ```bash
+   helm install ingress ingress-nginx/ingress-nginx
+   ```
+
+4. Set up monitoring:
+
+   ```bash
+   helm install monitoring prometheus-community/kube-prometheus-stack
+   ```
+
+### Deployment
+
+Use the provided system-up script to deploy the entire stack:
+
+```bash
+./Scripts/system-up.sh
+```
+
+## CI/CD Pipeline
+
+The Jenkins pipeline:
+
+1. Builds frontend and backend images using Kaniko
+2. Pushes images to Docker Hub
+3. Updates Kubernetes deployments with new image versions
+4. Applies changes to the cluster
+
+## Application Features
+
+- User authentication (register/login)
+- Create, read, update, delete todos
+- Mark todos as complete/incomplete
+- Persistent data storage
+- Health check endpoints
+- Responsive UI design
+
+## Security Features
+
+- CSRF protection
+- Session-based authentication
+- Secure password storage
+- Database credentials management
+- Container security with Kaniko
+
