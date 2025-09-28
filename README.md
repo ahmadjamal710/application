@@ -227,4 +227,6 @@ The Jenkins pipeline:
 - Secure password storage
 - Database credentials management
 - Container security with Kaniko
+## 🏗️ Architecture Diagram
 
+![EKS Deployment](architecture.png)
