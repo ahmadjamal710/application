@@ -1,4 +1,7 @@
 # Devops To-Do List Application with Kubernetes Deployment
+##  Architecture Diagram
+
+![EKS Deployment](architecture.png)
 
 A production-grade, Devops To-Do List application with automated Kubernetes deployment using Jenkins CI/CD pipeline.
 
@@ -227,6 +230,4 @@ The Jenkins pipeline:
 - Secure password storage
 - Database credentials management
 - Container security with Kaniko
-##  Architecture Diagram
 
-![EKS Deployment](architecture.png)
