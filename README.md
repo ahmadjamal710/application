@@ -1,6 +1,6 @@
  Devops To-Do List Application with Kubernetes Deployment
 
-A production-grade, full-stack To-Do List application with automated Kubernetes deployment using Jenkins CI/CD pipeline.
+A production-grade, Devops To-Do List application with automated Kubernetes deployment using Jenkins CI/CD pipeline.
 
 ## Project Overview
 
